@@ -1,0 +1,47 @@
+﻿@model DietBook.MVC.Models.Recipe
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="card border-primary border-2" style="background-color:#cef4ba">
+    <div class="row">
+        <div class="col-2 col-md-3 col-xl-4">
+            <img class="img-fluid" src="@Model.Photo" alt="...">
+        </div>
+        <div class="col-10 col-md-6 col-xl-6">
+            <div class="card-body">
+                <h4 class="card-title">@Model.Name</h4>
+                <p class="card-text">
+                    <h5>Steps</h5>
+                    <ul>
+                        @foreach (var step in Model.Steps)
+                        {
+                            <li>@step</li>
+                        }
+                    </ul>
+                </p>
+            </div>
+        </div>
+        <div class="col-12 col-md-3 col-xl-2">
+            <div class="card-body">
+                <h4 class="card-title">&nbsp</h4>
+                <p class="card-text">
+                    <h5>Ingredients</h5>
+                    <ul>
+                        @foreach (var ingredient in Model.RecipeIngredients)
+                        {
+                            <li> @(ingredient.Quantity != 0 ? ingredient.Quantity : String.Empty) @ingredient.Unit.Name @ingredient.Name </li>
+                        }
+                    </ul>
+                </p>
+            </div>
+        </div>
+        <p class="card-text"><small>Created by: @Model.Author on @Model.CreatedDate.ToShortDateString()</small></p>
+    </div>
+</div>
+<p></p>
+
+<a href="/Recipe/Edit/@Model.Id" class="btn btn-primary">Edit</a>
+<a href="/Recipe/Delete/@Model.Id" class="btn btn-primary">Delete</a>
+<a href="/Recipe" class="btn btn-primary">Back to list</a>

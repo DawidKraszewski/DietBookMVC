@@ -1,0 +1,74 @@
+﻿@model DietBook.MVC.Models.RecipeCreate
+
+@using System;
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create new recipe</h1>
+
+<hr />
+
+
+<form asp-action="Create" enctype="multipart/form-data">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-xl-4">
+                <div class="form-group">
+                    <label asp-for="Name" class="control-label h5"></label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Author" class="control-label h5"></label>
+                    <input asp-for="Author" class="form-control" />
+                    <span asp-validation-for="Author" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="CreatedDate" class="control-label h5"></label>
+                    <input asp-for="CreatedDate" readonly class="form-control" value="@System.DateTime.Today.ToString("yyyy-MM-dd")">
+                </div>
+                <div class="form-group">
+                    <label asp-for="Photo" class="control-label h5"></label>
+                    <input asp-for="Photo" class="form-control" />
+                    <span asp-validation-for="Photo" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Steps" class="control-label h5"></label>
+                    <p><small>Place steps here in a single paragraf. If steps need to be presented as a list, separate paragrafs by single empty line.</small></p>
+                    <textarea asp-for="Steps[0]" class="form-control" rows="7" placeholder="Peel and finely slice the garlic. Pick the sage leaves. Preheat the oven to 200C/400F/gas 6.
+
+OR
+
+Peel and finely slice the garlic.
+
+Pick the sage leaves.
+
+Preheat the oven to 200C/400F/gas 6.">
+                        </textarea>
+                    <span asp-validation-for="Steps" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-12 col-xl-8">
+                <label class="control-label h5">Ingredients</label>
+                <p></p>
+                <div id="table-wrapper">
+                    <div id="ingredients"> </div>
+                </div>
+            </div>
+            <p></p>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Create</button>
+                <a href="/Recipe" class="btn btn-primary">Back to List</a>
+            </div>
+        </div>
+    </div>
+</form>
+
+<script src="~/js/RecipeCreate.js"></script>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

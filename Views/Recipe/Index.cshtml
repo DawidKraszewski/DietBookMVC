@@ -1,0 +1,28 @@
+﻿@model IEnumerable<DietBook.MVC.Models.Recipe>
+
+@{
+    ViewData["Title"] = "Recipes";
+}
+
+<div class="container">
+    <div class="row">
+        @foreach (var recipe in Model)
+        {
+            <div class="col-6 col-xl-2 col-md-3  g-2">
+                <div class="card text-center border-primary border-2 h-100">
+                    <img class="card-image" style="background-image: url(@recipe.Photo); height:12rem" />
+                    <h5 class="card-body">@recipe.Name</h5>
+                    <p><small>by @recipe.Author</small></p>
+                    <a type="button" href="/Recipe/Details/@recipe.Id" class="btn btn-primary">Details</a>
+                </div>
+            </div>
+        }
+        <div class="col-6 col-xl-2 col-md-3 g-2 ">
+            <div class="card text-center border-primary border-2 h-100">
+                <img class="card-image" style="background-image: url(https://dietbookphotos.blob.core.windows.net/upload-photo-container/new.jpg); height:12rem" />
+                <h5 class="card-body">Create new recipe!</h5>
+                <a href="/Recipe/Create" class="btn btn-primary">Create new!</a>
+            </div>
+        </div>
+    </div>
+</div>

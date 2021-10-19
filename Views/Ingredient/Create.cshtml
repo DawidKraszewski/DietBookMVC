@@ -1,0 +1,29 @@
+﻿@model DietBook.MVC.Models.Ingredient
+
+@{
+    ViewData["Title"] = "Create";
+
+}
+
+<h1>Create</h1>
+
+<h4>Ingredient</h4>
+<hr />
+
+<div class="container">
+    <div class="row">
+        <div class="col-6">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Name" class="control-label"></label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <p></p>
+                <button type="submit" class="btn btn-primary">Create</button>
+                <a href="/Ingredient" class="btn btn-primary">Back to List</a>
+            </form>
+        </div>
+    </div>
+</div>

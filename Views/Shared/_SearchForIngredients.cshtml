@@ -1,0 +1,18 @@
+﻿@model IEnumerable<Ingredient>
+
+<div class="container">
+
+    @foreach (var ingredient in Model)
+    {
+        <div class="row">
+            <div class="col-10">
+                <div>@Html.DisplayFor(modelIngredient => ingredient.Name)</div>
+            </div>
+            <div class="col-2">
+                <a href="/Ingredient/Details/@ingredient.Id" class="btn btn-primary">Details</a>
+            </div>
+        </div>
+        <hr />
+    }
+
+</div>

@@ -1,0 +1,35 @@
+﻿@model IEnumerable<Ingredient>
+
+@using Newtonsoft.Json;
+
+@{IEnumerable<Unit> units = JsonConvert.DeserializeObject<IEnumerable<Unit>>(TempData.Peek("allUnits").ToString()) as IEnumerable<Unit>;}
+
+
+
+@foreach (var ingredient in Model)
+{
+    <hr />
+    <div class="row">
+        <div class="col-4">
+            <div>@Html.DisplayFor(modelIngredient => ingredient.Name)</div>
+        </div>
+        <div class="col-3">
+            <input type="text" placeholder="Quantity" data-quantity="@ingredient.Id" class="form-control" />
+        </div>
+        <div class="col-3">
+            <select class="form-select" aria-label="units" data-unit="@ingredient.Id">
+                <option selected>Unit</option>
+                @for (int i = 0; i < units.Count(); i++)
+                {
+                    <option value="@units.ElementAt(i).Id @units.ElementAt(i).Name">@units.ElementAt(i).Name</option>
+                }
+            </select>
+        </div>
+        <div class="col-2">
+            <button type="button" class="btn btn-primary btn-addIngredient" data-id=@ingredient.Id data-name="@ingredient.Name">Add</button>
+        </div>
+    </div>
+}
+
+
+<script src="~/js/SearchForIngredientsResult.js"></script>

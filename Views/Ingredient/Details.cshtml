@@ -1,0 +1,38 @@
+﻿@model DietBook.MVC.Models.Ingredient
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="card border-primary border-2" style="background-color:#cef4ba">
+    <div class="row">
+        <div class="col-4">
+            <div class="card-body">
+                <h4>@Model.Name</h4>
+            </div>
+        </div>
+            <div class="col-8">
+                <div class="card-body">
+                    <h5 class="card-title">Used in:</h5>
+                    <p class="card-text">
+                        @if (Model.IngredientRecipes.Count() != 0)
+                         {
+                            foreach (var recipe in Model.IngredientRecipes)
+                            {
+                                <a href="/Recipe/Details/@recipe.Id">@recipe.Name</a>
+                            }
+                         }
+                        else 
+                        { 
+                            <p>none</p>
+                        }
+                    </p>
+                </div>
+            </div>
+        </div>
+</div>
+<p></p>
+
+<a href="/Recipe/Edit/@Model.Id" class="btn btn-primary">Edit</a>
+<a href="/Ingredient/Delete/@Model.Id" class="btn btn-primary">Delete</a>
+<a href="/Ingredient" class="btn btn-primary">Back to list</a>
